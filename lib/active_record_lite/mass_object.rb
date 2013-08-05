@@ -1,11 +1,13 @@
 class MassObject
   def self.set_attrs(*attributes)  
     self.new_attr_accessor(*attributes)
+    #attr_accessor(*attributes)
     
-    @attributes = []
-    attributes.each do |attribute|
-      @attributes << attribute
-    end 
+    # attributes.each do |attribute|
+#       attr_accessor attribute.to_sym
+#     end
+    
+    @attributes = attributes
   end
 
   def self.attributes
@@ -16,10 +18,10 @@ class MassObject
   end
 
   def initialize(params = {})
-     
     params.each do |attribute, value|
-      self.send("#{attribute}=", value)
+      attribute = attribute.to_sym
       raise "mass assignment to unregistered attribute #{attribute}" unless self.class.attributes.include?(attribute)
+      self.send("#{attribute}=", value)
     end
     
   end
