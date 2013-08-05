@@ -5,6 +5,8 @@ require_relative './searchable'
 require "active_support/inflector"
 
 class SQLObject < MassObject
+  extend Searchable
+  
   def self.set_table_name(table_name)
     @table_name = table_name
   end
@@ -19,7 +21,7 @@ class SQLObject < MassObject
       FROM #{self.table_name}
     SQL
     
-    parse_results(results)
+    parse_all(results)
   end
 
   def self.find(id)    
@@ -30,7 +32,7 @@ class SQLObject < MassObject
       id = #{id}
     SQL
     
-    parse_results(results)
+    parse_all(results)
   end
 
   def save
@@ -46,7 +48,7 @@ class SQLObject < MassObject
     self.class.attributes.map{ |attribute| self.send(attribute)}
   end
   
-  def self.parse_results(db_array)
+  def self.parse_all(db_array)
     objects = []
     db_array.each do |options|
      objects << self.new(options)
