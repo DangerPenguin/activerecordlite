@@ -42,7 +42,6 @@ class SQLObject < MassObject
   end
   
   private
-
   def attribute_values
     self.class.attributes.map{ |attribute| self.send(attribute)}
   end

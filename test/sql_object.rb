@@ -23,6 +23,6 @@ p Human.all
 p Cat.all
 
 c = Cat.new(:name => "Gizmo", :owner_id => 1)
-c.create # create
+c.save # create
 c.name = "Kitteh"
 c.save # update
