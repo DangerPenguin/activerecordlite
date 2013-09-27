@@ -1,1 +1,3 @@
-THIS README INTENTIONALLY LEFT BLANK
+#Active Record Lite
+
+A lite version of the Active Record ORM
